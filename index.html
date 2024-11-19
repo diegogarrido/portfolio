@@ -1,0 +1,87 @@
+<html>
+<style>
+    body {
+        background-color: #353535;
+    }
+</style>
+
+<head>
+    <script src="./prism.js"></script>
+    <link rel="stylesheet" href="prism.css">
+</head>
+
+<body>
+    <div>
+        <pre>
+            <code class="language-json" id="terminal"></code>
+        </pre>
+    </div>
+
+    <script>
+        const data = {
+            name: "Diego Garrido Pinilla",
+            degree: "Software Engineer",
+            university: "Universidad de La Frontera",
+            location: "Araucanía, Chile",
+            position: "Backend Developer",
+            stack: {
+                nodeJs: {
+                    experience: "4 years",
+                    skill: "Advanced"
+                },
+                expressJs: {
+                    experience: "4 years",
+                    skill: "Advanced"
+                },
+                javaScript: {
+                    experience: "4 years",
+                    skill: "Advanced"
+                },
+                typeScript: {
+                    experience: "2 years",
+                    skill: "Medium"
+                },
+                git: {
+                    experience: "4 years",
+                    skill: "Advanced"
+                }
+            },
+            projects: {
+                turistAR: {
+                    date: { start: "oct-2019", end: "apr-2021" },
+                    description: "Node JS based API written in JavaScript, with a MongoDB database, deployed on EC2 Amazon web service"
+                },
+                appAR: {
+                    date: { start: "may-2021", end: "Jan-2023" },
+                    description: "Node JS based API written in JavaScript, with a MySQL database, deployed on EC2 Amazon web service"
+                },
+                dekorAI: {
+                    date: { start: "feb-2023", end: "to-the-date" },
+                    description: "Node JS based API written in TypeScript, with a MongoDB database, deployed on EC2 Amazon web service"
+                }
+            }
+        }
+
+        const writeCode = async () => {
+            const terminal = document.getElementById("terminal")
+            console.log(terminal)
+            const text = "\n" + JSON.stringify(data, null, "\t")
+            const delay = 1
+            for (let i = 0; i < text.length; i++) {
+                console.log(text[i])
+                await new Promise(resolve => {
+                    setTimeout(() => {
+                        terminal.innerHTML += text[i]
+                        Prism.highlightElement(terminal)
+                        resolve()
+                    }, delay)
+                })
+            }
+        }
+
+        writeCode()
+
+    </script>
+</body>
+
+</html>
